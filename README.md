@@ -198,7 +198,7 @@ A Análise de Sobrevivência é um conjunto de métodos estatísticos projetados
   Após a análise do impacto das variáveis é necessário realizar o teste de residuos Schoenfeld. Tal teste é importante para validar a proporcionalidade dos Riscos (Proportional Hazards Assumption). A premissa PH considera que as variáveis são constantes ao longo de todo o tempo.
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/10_Teste_sch.png" width="600">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/10_Teste_sch.png" width="450">
   </p>
 
 
@@ -230,7 +230,7 @@ Inicialmente foram realizados testes apra avaliar os modelos parametricos e sele
 
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/15_modelos_parametricos.png" width="400">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/15_modelos_parametricos.png" width="350">
   </p>
 
 
@@ -258,7 +258,7 @@ Nesta etapa foi realizar o teste com os modelos e ajuste dos parametros com os m
   - risk_group: Representa a estratificação dos percentis em classes e servirá como referencia de atuação para o time de retenção. Para realizar o calculo dos tempos de churn foi selecionado somente os grupos Alto, Muito alto e critico que representa 10,56% da base.
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/Grupo_de_risk.png" width="300">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/Grupo_de_risk.png" width="250">
   </p>
 
 
@@ -283,7 +283,7 @@ Obs.: Esta imagem representa a projeção de ganho considerando somente os grupo
 Para este projeto, utilizamos o SHAP (SHapley Additive exPlanations) para garantir transparência e explicabilidade aos resultados do modelo de Churn. Enquanto modelos tradicionais nos dão uma visão geral da base, o SHAP nos permite entender a contribuição individual de cada variável para a projeção dos dias de sobrevivência.
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/feature_importanece_bar.png" width="750">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/feature_importanece_bar.png" width="700">
   </p>
 
 A herarquia das features na coordenda y representa o grau de importância sendo o registred_via a mais importante e a city a menos importante. Os valores apresentados na barras informam a contribuição para a estimação do aft.
@@ -314,10 +314,21 @@ Segue o link dashboard com os clientes com potencial de churn no streamlit:
 
 Link:
 
-  <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/streamlit_b.gif" width="800">
-  </p>
 
+<p align="center">
+  <kbd>
+    <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/streamlit_b.gif" width="800">
+  </kbd>
+</p>
+
+
+<p align="center">
+
+| |
+| :---: |
+| <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/streamlit_b.gif" width="800"> |
+
+</p>
 
 # 4. Conclusão
 
