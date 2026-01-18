@@ -1,7 +1,7 @@
 
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/logo.png" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/logo.png" width="250" height="250">
 </p>
 
 # Previsão de churn com análise de sobrevivencia
@@ -57,7 +57,7 @@ A Análise de Sobrevivência é um conjunto de métodos estatísticos projetados
   Representa a probabilidade de um cliente "sobreviver" (não dar churn) além do tempo (t).
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/funcao_sobrevivencia.png" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/funcao_sobrevivencia.png" width="250">
   </p>
 
   A Função de Risco (Hazard Function) λ
@@ -65,7 +65,7 @@ A Análise de Sobrevivência é um conjunto de métodos estatísticos projetados
   Representa a taxa instantânea de ocorrência do evento (churn) no tempo (t), dado que o cliente sobreviveu até aquele momento. É o "risco imediato" de perda.
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/Risco.png" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/Risco.png" width="250">
   </p>
 
 
@@ -118,25 +118,25 @@ A Análise de Sobrevivência é um conjunto de métodos estatísticos projetados
 
   Nesta etapa foram realizados avaliações sobre a composição de cada grupo das covariaveis em relação a variavel churn.
 
-    - O percentual de churn na base gira em torno de 9%.
+  O percentual de churn na base gira em torno de 9%.
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/3_proporcao_de_churn.png" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/3_proporcao_de_churn.png" width="250" height="250">
   </p>
 
  
 
-    - Existe uma concentração dos clientes na cidade 1 com 64,3% da base. Entretanto, além do grande volume de churn na cidade 1 que é esperado devido ter o maior volume de clientes, existe um grande volume de churn nas cidades 4 (6,9%), 5(10,0%),13 (11,9%) e 15 (6,1%).
+  Existe uma concentração dos clientes na cidade 1 com 64,3% da base. Entretanto, além do grande volume de churn na cidade 1 que é esperado devido ter o maior volume de clientes, existe um grande volume de churn nas cidades 4 (6,9%), 5(10,0%),13 (11,9%) e 15 (6,1%).
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/4_churn_city.png" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/4_churn_city.png" width="400" height="400">
   </p>
 
   
-    - A maioria dos clientes tem a renovação automática (86,5%). Porém, a distribuição do volume de churn é maior no clientes que não tem renovação automatica (56,7%) o que demonstra a possibilidade de criar ações para adesão da renovação automatica.
+  A maioria dos clientes tem a renovação automática (86,5%). Porém, a distribuição do volume de churn é maior no clientes que não tem renovação automatica (56,7%) o que demonstra a possibilidade de criar ações para adesão da renovação automatica.
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/5_Auto_renewal.png" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/5_Auto_renewal.png" width="400" height="400">
   </p>
 
 
@@ -144,7 +144,7 @@ A Análise de Sobrevivência é um conjunto de métodos estatísticos projetados
 
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/6_payment_method.png" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/6_payment_method.png" width="400" height="400">
   </p>
 
    
@@ -153,7 +153,7 @@ A Análise de Sobrevivência é um conjunto de métodos estatísticos projetados
 
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/7_pay.png" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/7_pay.png" width="400" height="400">
   </p>
 
  
@@ -162,17 +162,17 @@ A Análise de Sobrevivência é um conjunto de métodos estatísticos projetados
   - A probabilidade de sobrevivência cai para 50% no momento 1539.
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/8_curva_geral_sobrevivencia.png" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/8_curva_geral_sobrevivencia.png" width="400" height="400">
   </p>
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/0_mediana_de_sobrevivencia.png" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/0_mediana_de_sobrevivencia.png" width="250" height="250">
   </p>
 
   Um ponto de destaque é em relação a mediana de churn do metodo de pagamento 25 que é de 38 dias.
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/0_metodo_pay.png" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/0_metodo_pay.png" width="200" height="200">
   </p>
 
  
