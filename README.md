@@ -1,9 +1,10 @@
 
 
-
 ![logov](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/logo.png)
 
-
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/logo.png" width="200">
+</p>
 
 # Previsão de churn com análise de sobrevivencia
 
