@@ -136,7 +136,7 @@ A Análise de Sobrevivência é um conjunto de métodos estatísticos projetados
   A maioria dos clientes tem a renovação automática (86,5%). Porém, a distribuição do volume de churn é maior no clientes que não tem renovação automatica (56,7%) o que demonstra a possibilidade de criar ações para adesão da renovação automatica.
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/5_Auto_renewal.png" width="400" height="400">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/5_Auto_renewal.png" width="800">
   </p>
 
 
@@ -144,7 +144,7 @@ A Análise de Sobrevivência é um conjunto de métodos estatísticos projetados
 
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/6_payment_method.png" width="400" height="400">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/6_payment_method.png" width="800">
   </p>
 
    
@@ -153,7 +153,7 @@ A Análise de Sobrevivência é um conjunto de métodos estatísticos projetados
 
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/7_pay.png" width="400" height="400">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/7_pay.png" width="800">
   </p>
 
  
@@ -162,17 +162,17 @@ A Análise de Sobrevivência é um conjunto de métodos estatísticos projetados
   - A probabilidade de sobrevivência cai para 50% no momento 1539.
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/8_curva_geral_sobrevivencia.png" width="400" height="400">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/8_curva_geral_sobrevivencia.png" width="800">
   </p>
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/0_mediana_de_sobrevivencia.png" width="250" height="250">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/0_mediana_de_sobrevivencia.png" width="300">
   </p>
 
   Um ponto de destaque é em relação a mediana de churn do metodo de pagamento 25 que é de 38 dias.
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/0_metodo_pay.png" width="200" height="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/0_metodo_pay.png" width="800">
   </p>
 
  
@@ -182,12 +182,12 @@ A Análise de Sobrevivência é um conjunto de métodos estatísticos projetados
 
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/9_Table_Cox_PH.png" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/9_Table_Cox_PH.png" width="800">
   </p>
 
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/12_impacto.png" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/12_impacto.png" width="800">
   </p>
 
 
@@ -198,7 +198,7 @@ A Análise de Sobrevivência é um conjunto de métodos estatísticos projetados
   Após a análise do impacto das variáveis é necessário realizar o teste de residuos Schoenfeld. Tal teste é importante para validar a proporcionalidade dos Riscos (Proportional Hazards Assumption). A premissa PH considera que as variáveis são constantes ao longo de todo o tempo.
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/10_Teste_sch.png" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/10_Teste_sch.png" width="800">
   </p>
 
 
@@ -211,7 +211,7 @@ A Análise de Sobrevivência é um conjunto de métodos estatísticos projetados
 Foi utilizado o algoritmo Weibull Aft para avaliar quais variaveis impactam na aceleração do churn e qual a intensidade dessa influência. Semelhante ao Cox, o Weibull Aft é um modelo focado na leitura de relações lineares.
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/13_tabela_aft.png" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/13_tabela_aft.png" width="800">
   </p>
 
 Esta é a coluna mais importante. Ela indica a relação com o logaritmo do tempo.
@@ -230,7 +230,7 @@ Inicialmente foram realizados testes apra avaliar os modelos parametricos e sele
 
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/15_modelos_parametricos.png" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/15_modelos_parametricos.png" width="800">
   </p>
 
 
@@ -245,7 +245,7 @@ Nesta etapa foi realizar o teste com os modelos e ajuste dos parametros com os m
    -  Para o processo de teste-validação foi escolhido o modelo XGBoost (aft e cox). O XGBoost COx será utilizado para raquear os clientes por meio do score de risco e em seguida será verificado os dias de sobrevivência com o XGBoost aft.
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/Teste_validacao.png" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/Teste_validacao.png" width="800">
   </p>
 
 
@@ -258,7 +258,7 @@ Nesta etapa foi realizar o teste com os modelos e ajuste dos parametros com os m
   - risk_group: Representa a estratificação dos percentis em classes e servirá como referencia de atuação para o time de retenção. Para realizar o calculo dos tempos de churn foi selecionado somente os grupos Alto, Muito alto e critico que representa 10,56% da base.
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/Grupo_de_risk.png" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/Grupo_de_risk.png" width="800">
   </p>
 
 
@@ -272,7 +272,7 @@ Nesta etapa foi realizar o teste com os modelos e ajuste dos parametros com os m
 Nesta etapa, foi criado a tabela simulando a perda evitada caso a equipe de marketing consiga reter o número estimado em cada faixa. A coluna Cenário (Redução Churn %) representa o percentual de redução de churn e a coluna clientes atendidos representa o número de retenções para cada cenário. A coluna Valor Recuperado representa a perda evitada mensal e as colunas Rec_em_[i]_meses representam a a projeção do valor recuperado para cada período de meses.
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/Tabela_perda_evitada.png" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/Tabela_perda_evitada.png" width="800">
   </p>
 
 
@@ -283,7 +283,7 @@ Obs.: Esta imagem representa a projeção de ganho considerando somente os grupo
 Para este projeto, utilizamos o SHAP (SHapley Additive exPlanations) para garantir transparência e explicabilidade aos resultados do modelo de Churn. Enquanto modelos tradicionais nos dão uma visão geral da base, o SHAP nos permite entender a contribuição individual de cada variável para a projeção dos dias de sobrevivência.
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/feature_importanece_bar.png" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/feature_importanece_bar.png" width="800">
   </p>
 
 A herarquia das features na coordenda y representa o grau de importância sendo o registred_via a mais importante e a city a menos importante. Os valores apresentados na barras informam a contribuição para a estimação do aft.
@@ -315,7 +315,7 @@ Segue o link dashboard com os clientes com potencial de churn no streamlit:
 Link:
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/streamlit_b.gif" width="200">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/streamlit_b.gif" width="800">
   </p>
 
 
