@@ -1,0 +1,11 @@
+# Pastas do ambiente virtual
+lib/
+include/
+share/
+Scripts/
+etc/
+
+*.csv
+
+# Arquivos de configuração
+pyvenv.cfg
