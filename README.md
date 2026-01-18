@@ -1,7 +1,7 @@
 
 
 
-![logov](https://raw.githubusercontent.com/Andre10DS/ClusterInsiders/main/img/Marca-Photoroom.png)
+![logov](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/logo.png)
 
 
 
@@ -32,7 +32,41 @@ Por esse motivo, o time de marketing requisitou ao time de dados uma seleção d
 1. Deve ser entregue a lista de clientes com maior probabilidade de churn e qual data provável de churn.
 2. A lista de clientes com potencial de churn deverá contem os clientes com maior potencial de risco. Além disso, a lista deverá ser rankeada tendo como critério um balanço entre o valor pago pelo cliente e tempo até o churn sendo prioriazados aqueles com maior valor e tempo mais curto para o churn.
 
-# 3. Planejamento da solução.
+# 4. Análise Teórica do Problema: Churn & Survival Analysis
+
+1. O Problema do Churn
+O Churn Rate (Taxa de Rotatividade) mede a taxa de clientes que cancelam uma assinatura ou interrompem a relação comercial com uma empresa. Tradicionalmente, o churn é tratado como um problema de classificação binária (o cliente vai sair ou não?). No entanto, essa abordagem ignora uma variável crítica: o tempo.
+
+Neste projeto, tratamos o churn não apenas como um evento, mas como um processo temporal, permitindo responder não só quem sairá, mas quando isso deve acontecer.
+
+2. O que é Análise de Sobrevivência (Survival Analysis)?
+A Análise de Sobrevivência é um conjunto de métodos estatísticos projetados para modelar o tempo até que um evento de interesse ocorra. Tais metodos são muito utilizados na medicina (para medir o tempo até a morte ou cura) e na engenharia (confiabilidade de peças).
+
+- Conceitos Fundamentais:
+
+   **Evento (Event): O Churn (cancelamento).
+
+   ** Tempo (Tenure): O período em que o cliente permanece ativo.
+
+   ** Censura (Censoring): Ocorre quando o evento não aconteceu até o final do período de coleta de dados (o cliente ainda é fiel). Ignorar clientes censurados enviesa o modelo; a Análise de Sobrevivência os utiliza para informar que "pelo menos até o dia X, esse cliente sobreviveu".
+
+
+3. Pilares Estatísticos e Fórmulas
+
+  A Função de Sobrevivência S(t) 
+
+  Representa a probabilidade de um cliente "sobreviver" (não dar churn) além do tempo (t).
+
+  ![sobrevivencia](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/funcao_sobrevivencia.png)
+
+  A Função de Risco (Hazard Function) λ
+  
+  Representa a taxa instantânea de ocorrência do evento (churn) no tempo (t), dado que o cliente sobreviveu até aquele momento. É o "risco imediato" de perda.
+
+  ![risco](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/Risco.png)
+
+
+# 5. Planejamento da solução.
 
 **Step 01. Descrição dos dados:**
 
@@ -82,62 +116,75 @@ Por esse motivo, o time de marketing requisitou ao time de dados uma seleção d
   Nesta etapa foram realizados avaliações sobre a composição de cada grupo das covariaveis em relação a variavel churn.
 
     - O percentual de churn na base gira em torno de 9%.
-    *** imagem 3 ***
+
+  ![propor_churn](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/3_proporcao_de_churn.png)
 
     - Existe uma concentração dos clientes na cidade 1 com 64,3% da base. Entretanto, além do grande volume de churn na cidade 1 que é esperado devido ter o maior volume de clientes, existe um grande volume de churn nas cidades 4 (6,9%), 5(10,0%),13 (11,9%) e 15 (6,1%).
 
-    *** 4_churn_city ***
+  ![churn_city](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/4_churn_city.png)
+
 
     - A maioria dos clientes tem a renovação automática (86,5%). Porém, a distribuição do volume de churn é maior no clientes que não tem renovação automatica (56,7%) o que demonstra a possibilidade de criar ações para adesão da renovação automatica.
 
-    *** 5_Auto_revewal**
+  ![auto_renewal_city](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/5_Auto_renewal.png)
+
 
     - Apesar do metodo 33 ser dominante na base ele não repesenta o maior quantidade de churn. Tal posição é ocupada pelo metodo 38 com 38,4% dos churn. Outro metodo representativo é o 36 com participação de 9,8% dos churns.
 
-    *** 6_payment-method ***
+  ![payment_me](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/6_payment_method.png)
+   
 
     - Em relação ao valor pago pelos clientes na plataforma, a maioria está situada entre os intervalos de 0 até 266. Apesar do maior parte do churn acompanhar ficar situada no intervalo de 0 a 266 verificamos um percentual expressivo nos intervalos 400 a 555 com 6%, o intervalo 800 a 933,33 com 9,6% e o intervalo 1733 a 1866,66 com 8,7%.
 
+  ![pay](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/7_pay.png)
 
-    *** 7_pay ***
 
 **Step 05. Análise da curva de sobrevivência:**
 
   - A probabilidade de sobrevivência cai para 50% no momento 1539.
 
-    *** 8_curva  de sobrevivencia **
+  ![curv_sobre](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/8_curva_geral_sobrevivencia.png)
+   
 
-    *** 0_median tabela **
+  ![median](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/0_mediana_de_sobrevivencia.png)
+
 
   Um ponto de destaque é em relação a mediana de churn do metodo de pagamento 25 que é de 38 dias.
 
-    *** Metodo de pagamento **
-
+  ![metodo_pay](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/0_metodo_pay.png)
 
   
 **Step 06. Análise do impacto da covariaveis sobre o aumento do risco:**
 
   - Utilizamos o algoritmo Cox PH para verificar quais covariaveis mais influenciam no aumento do risco de churn e qual a intensidade. Um ponto de observação é que o Cox PH é um algoritmo estatístico que busca verificar ralações lineares.
 
-    *** 9_Tabela_Cox **
-    *** 12_impacto **
+
+  ![Table_cox](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/9_Table_Cox_PH.png)
+
+
+
+  ![Impacto](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/12_impacto.png)
+
+
 
   Na tabela do Cox, as principais colunas são o coef, exp(coef) e p. O coef sinalizar o tipo de impacto sobre o churn sendo que valores positivos aumentam o risco de churn e valores negativos reduzem o risco. O exp(coef) mostra a intensidade do impacto sendo valores maiores que 1 aumentam o risco (HR 1.20 significa que o risco é 20% maior para cada unidade da variável) e valores menores que 1 reduzem o risco de churn (HR de 0.80 significa que o risco é 20% menor). O valor de p-valor demonstra se o coeficiente tem significancia estatística e impacta o churn sendo que o valor da variavel tem que ser <0.05. O valor do C-index demonstra a perfomance do modelo sendo que valores menores que 0.5 representa um modelo ruim, valores entre 0.7 a 0.8 representam um modelo com boa capacidade preditiva e valores maiores que 0.8 demonstra um modelo com capacidade excelente.
 
-  As features payment_method, city, is_auto_rene e actual_paid tem um impacto negativo e aumentam o risco de churn. O modelo apresenta um performance adequada com 0.78. A única variavel que não tem significancia estatística é a plan_list_price.
+  As features payment_method, is_auto_renew e actual_paid tem um impacto negativo e reduzem o risco de churn. O modelo apresenta um performance adequada com 0.78. A única variavel que não tem significancia estatística é a plan_list_price.
 
   Após a análise do impacto das variáveis é necessário realizar o teste de residuos Schoenfeld. Tal teste é importante para validar a proporcionalidade dos Riscos (Proportional Hazards Assumption). A premissa PH considera que as variáveis são constantes ao longo de todo o tempo.
 
+  ![Teste_sch](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/10_Teste_sch.png)
 
-  *** 10_Teste_sch **
+  Com exceção das covariáveis payments_pan_days e a plan_list_price todas as outras violaram a premissa PH.
 
-  As features payments_pan_days e a plan_list_price violaram a premissa. Tal fato sinaliza que o modelo Cox não é um bom preditor.
+  A violação da premissa sugere que o impacto desses fatores no Churn não é estático. Por exemplo, o payment_method tem um peso diferente no risco de cancelamento nos primeiros meses de contrato em comparação com clientes antigos. Isso demonstra que o comportamento de churn na base de dados é dinâmico e evolui ao longo do ciclo de vida do cliente. Embora a premissa de PH não tenha sido estritamente atendida, o Modelo de Cox ainda é útil como uma ferramenta de inferência geral, fornecendo a direção do impacto (se aumenta ou diminui o risco) de cada variável.
 
 **Step 07. Análise do impacto da covariaveis sobre o tempo de sobrevivência (AFT):**
 
 Foi utilizado o algoritmo Weibull Aft para avaliar quais variaveis impactam na aceleração do churn e qual a intensidade dessa influência. Semelhante ao Cox, o Weibull Aft é um modelo focado na leitura de relações lineares.
 
-*** 13_Tabela_aft **
+![Tabela_aft](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/13_tabela_aft.png)
+
 
 Esta é a coluna mais importante. Ela indica a relação com o logaritmo do tempo.
   * Coeficiente Positivo ($> 0$): Significa que a variável aumenta o tempo de sobrevivência. O cliente demora mais para cancelar (o que é bom para o negócio).
@@ -145,15 +192,15 @@ Esta é a coluna mais importante. Ela indica a relação com o logaritmo do temp
   * Se exp(coef) = 1,20: A variável aumenta a duração em 20%.
   * Se exp(coef) = 0,80: A variável reduz a duração para 80% do original (ou seja, o cancelamento acontece 20% mais rápido).
 
-* Nota 1: As covariáveis bd, payments_pan_days, plan_list_price e registered_via aceleram o tempo de cancelamento. As demais o retardam.
-* Nota 2: A covariável com maior impacto em atrasar o cancelamento é is_auto_renew, com 247%.
+* Nota 1: As covariáveis payments_pan_days, plan_list_price e registered_via aceleram o tempo de cancelamento. As demais o retardam.
+* Nota 2: A covariável com maior impacto em atrasar o cancelamento é is_auto_renew com 3.11.
 * Nota 3: Todas as covariáveis mostraram significância estatística.
 
 **Step 07. Teste dos modelos parametricos:**
 
 Inicialmente foram realizados testes apra avaliar os modelos parametricos e selecionar um modelo base que servirá de referência como valor mínimo de performance.
 
-*** 15_modelos_parametricos **
+![parametricos](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/15_modelos_parametricos.png)
 
 Entre as distribuições paramétricas avaliadas, o modelo Weibull apresentou o melhor ajuste aos dados de tempo até churn, superando substancialmente os modelos Log-normal e Log-logistic segundo os critérios de log-verossimilhança (maior / menos negativo melhor), AIC(menor melhor) e BIC (menor melhor).
 
@@ -161,21 +208,12 @@ Entre as distribuições paramétricas avaliadas, o modelo Weibull apresentou o 
     
 Nesta etapa foi realizar o teste com os modelos e ajuste dos parametros com os modelos Weibull aft, XGBoost aft e XGBoost Cox. A principal metrica de avaliação foi a c_index. O XGboost Cox também foi treinado visando a realização da primeira etapa de ranqueamento por meio do score gerado pelo modelo.
 
-
-![modelvc](https://raw.githubusercontent.com/Andre10DS/ClusterInsiders/main/img/Modelos.png)
-
-
-
-
-
 **Step 09. Teste-validação:**
 
-   -  Para o processo de teste-validação foi escolhido o modelo XGBoost (aft e cox). 
+   -  Para o processo de teste-validação foi escolhido o modelo XGBoost (aft e cox). O XGBoost COx será utilizado para raquear os clientes por meio do score de risco e em seguida será verificado os dias de sobrevivência com o XGBoost aft.
 
 
-
-
-![clusterv](https://raw.githubusercontent.com/Andre10DS/ClusterInsiders/main/img/cluster.png)
+![validacao](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/Teste_validacao.png)
 
 
 **Step 10. Modelo final:**
@@ -186,7 +224,8 @@ Nesta etapa foi realizar o teste com os modelos e ajuste dos parametros com os m
   - risk_percentile: Representa a criação dos percentis com base na coluna risck_score.
   - risk_group: Representa a estratificação dos percentis em classes e servirá como referencia de atuação para o time de retenção. Para realizar o calculo dos tempos de churn foi selecionado somente os grupos Alto, Muito alto e critico que representa 10,56% da base.
 
-      *** Grupo risk **
+![Grupo_de_risk](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/Grupo_de_risk.png)
+ 
 
   - expected_days_to_churn: É o tempo até o churn calculado pelo modelo aft.
   - expected_churn_date: Representa a data prevista para o churn.
@@ -197,14 +236,15 @@ Nesta etapa foi realizar o teste com os modelos e ajuste dos parametros com os m
 
 Nesta etapa, foi criado a tabela simulando a perda evitada caso a equipe de marketing consiga reter o número estimado em cada faixa. A coluna Cenário (Redução Churn %) representa o percentual de redução de churn e a coluna clientes atendidos representa o número de retenções para cada cenário. A coluna Valor Recuperado representa a perda evitada mensal e as colunas Rec_em_[i]_meses representam a a projeção do valor recuperado para cada período de meses.
 
-*** Tabela com cenarios de retenção **
+![Tab_perda](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/Tabela_perda_evitada.png)
 
+Obs.: Esta imagem representa a projeção de ganho considerando somente os grupos critico e muito alto.
 
 **Step 12. Interpretação da features :**
 
-Usando o algoritmo SHAP foi obtido a seguinte explicação:
+Para este projeto, utilizamos o SHAP (SHapley Additive exPlanations) para garantir transparência e explicabilidade aos resultados do modelo de Churn. Enquanto modelos tradicionais nos dão uma visão geral da base, o SHAP nos permite entender a contribuição individual de cada variável para a projeção dos dias de sobrevivência.
 
-*** feature importance **
+![feature_imp](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/feature_importanece_bar.png)
 
 A herarquia das features na coordenda y representa o grau de importância sendo o registred_via a mais importante e a city a menos importante. Os valores apresentados na barras informam a contribuição para a estimação do aft.
 
@@ -232,7 +272,12 @@ Falso: As cidades 25, 17, 20 e 8 term queda de 50% da probilidade de sobrevivenc
 Segue o link dashboard com os clientes com potencial de churn no streamlit:
 
 
-![dashboardvc](https://raw.githubusercontent.com/Andre10DS/ClusterInsiders/main/img/dashboard.png)
+Link:
+
+
+
+![streamlit](https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/streamlit_b.gif)
+
 
 
 # 4. Conclusão
@@ -254,6 +299,7 @@ Esses modelos permitiram capturar relações não lineares, interações complex
 # 5. Próximo passos
 
   - Criar uma conexão com o CRM ou com base de dados da equipe de marketing para sinalizar as ações que estão sendo realizadas para cada cliente evitando a concentração de esforços em um mesmo cliente, mensurar o custo das ações e verificar quais ações estão gerando retorno.
+  - Acrescentar um modelo previo de classficição para apontar aqueles que tem maior chance de churn e depois envia-los para os modelos Cox e aft.
 
 
 

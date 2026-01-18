@@ -9,9 +9,6 @@ import base64
 from pathlib import Path
 from datetime                 import datetime, timedelta
 from lifelines                import KaplanMeierFitter
-
-#from propensity               import retention_priority
-
 from helpfunctionproject      import simular_reversao
 
 st.set_page_config(page_title="Dashboard de Retenção - Churn Survival", layout="wide",initial_sidebar_state="expanded")
@@ -20,21 +17,21 @@ st.set_page_config(page_title="Dashboard de Retenção - Churn Survival", layout
 @st.cache_resource
 def load_models():
     # Carregue seus modelos .pkl aqui
-    with open('c:\\Users\\nerod\\Repos\\DS\\AS_Churn\\analise_de_sobrevivencia\\models\\model_xgb.pkl', 'rb') as f:
+    with open('models/model_xgb.pkl', 'rb') as f:
         model_cox = pickle.load(f)
-    with open('c:\\Users\\nerod\\Repos\\DS\\AS_Churn\\analise_de_sobrevivencia\\models\\model_xgb_aft.pkl', 'rb') as f:
+    with open('models/model_xgb_aft.pkl', 'rb') as f:
         model_aft = pickle.load(f)
     return model_cox, model_aft
 
 def load_processing():
     
-    with open('c:\\Users\\nerod\\Repos\\DS\\AS_Churn\\analise_de_sobrevivencia\\models\\scaler_pay.pkl', 'rb') as f:
+    with open('models/scaler_pay.pkl', 'rb') as f:
         scaler_pay = pickle.load(f)
-    with open('c:\\Users\\nerod\\Repos\\DS\\AS_Churn\\analise_de_sobrevivencia\\models\\scaler_ac.pkl', 'rb') as f:
+    with open('models/scaler_ac.pkl', 'rb') as f:
         scaler_ac = pickle.load(f)
-    with open('c:\\Users\\nerod\\Repos\\DS\\AS_Churn\\analise_de_sobrevivencia\\models\\mm_reg.pkl', 'rb') as f:
+    with open('models/mm_reg.pkl', 'rb') as f:
         mm_reg = pickle.load(f)
-    with open('c:\\Users\\nerod\\Repos\\DS\\AS_Churn\\analise_de_sobrevivencia\\models\\encoder_freq.pkl', 'rb') as f:
+    with open('models/encoder_freq.pkl', 'rb') as f:
         encoder_freq = pickle.load(f)
 
     return scaler_pay, scaler_ac, mm_reg, encoder_freq
@@ -46,10 +43,48 @@ def get_base64_of_bin_file(bin_file):
 
 def processing_data():
 
-    df = pd.read_parquet("c:\\Users\\nerod\\Repos\\DS\\AS_Churn\\analise_de_sobrevivencia\\data\\cliente_mes.parquet")
+    df_train = pd.read_parquet("data/train_v2.parquet")
+    df_members = pd.read_parquet("data/members_v3.parquet")
+    df_transactions = pd.read_parquet("data/transactions.parquet")
+
     scaler_pay, scaler_ac, mm_reg, encoder_freq = load_processing()
 
-   
+
+
+    df_transactions_2 = df_transactions.groupby("msno").agg(payment_method = ("payment_method_id","max"),
+                                    payments_pan_days = ("payment_plan_days","max"),
+                                    plan_list_price = ("plan_list_price","max"),
+                                    is_auto_renew = ("is_auto_renew","max"),
+                                    actual_paid = ("actual_amount_paid","max"),
+                                    expiration_assinatura = ("membership_expire_date","max")
+                                    ).reset_index()
+
+    df_members["date_ini"] = pd.to_datetime(df_members["registration_init_time"], format='%Y%m%d')
+    df_transactions_2["date_fim"] = pd.to_datetime(df_transactions_2["expiration_assinatura"], format='%Y%m%d')
+
+    df_members = df_members.drop(columns=["registration_init_time"])
+    df_transactions_2 = df_transactions_2.drop(columns=["expiration_assinatura"])
+
+    df_raw = pd.merge(df_train,df_members, on="msno",how="left")
+    df_raw = pd.merge(df_raw,df_transactions_2, on="msno",how="left")
+    df_raw["year"] = df_raw["date_ini"].dt.year
+
+    df_raw = df_raw.drop(columns=["gender","bd"])
+
+    df_raw = df_raw.dropna()
+
+
+    df_raw["days"] = df_raw.apply(lambda x: (x["date_fim"]-x["date_ini"]).days if pd.notnull(x["date_fim"]) else pd.to_datetime('today').normalize()-x["date_ini"], axis = 1)
+
+    df_raw["days"] = df_raw["days"].astype("int64")
+
+
+    df_raw = df_raw[df_raw["year"]>=2013]
+
+    df = df_raw[df_raw["days"]>0]
+
+    df = df.drop(columns="plan_list_price")
+
     df['actual_paid'] = scaler_ac.transform(df[['actual_paid']])
 
     df['registered_via'] = mm_reg.transform(df[['registered_via']])
@@ -174,7 +209,7 @@ def interpretation(df):
 def main():
 
 
-    img_path = Path(r"C:\Users\nerod\Repos\DS\AS_Churn\analise_de_sobrevivencia\img\logo.png")
+    img_path = Path(r"img/logo.png")
     
     if img_path.exists():
         img_base64 = get_base64_of_bin_file(img_path)
@@ -199,7 +234,7 @@ def main():
     st.markdown(
     """
     <h1 style='text-align: center; color: #002B5B;'>
-        🛡️ Painel Estratégico de Retenção - Churn Survival
+        🛡️ Painel de Retenção - Churn Survival
     </h1>
     """, 
     unsafe_allow_html=True
@@ -288,7 +323,7 @@ def main():
                     min_value=min_base, 
                     max_value=max_base, 
                     key="n_min",
-                    value=st.session_state.n_min,
+                    # REMOVIDO: value=st.session_state.n_min,
                     on_change=input_changed
                 )
 
@@ -298,7 +333,7 @@ def main():
                     min_value=min_base, 
                     max_value=max_base, 
                     key="n_max",
-                    value=st.session_state.n_max,
+                    # REMOVIDO: value=st.session_state.n_max,
                     on_change=input_changed
                 )
 

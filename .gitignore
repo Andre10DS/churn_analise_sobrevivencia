@@ -5,6 +5,8 @@ share/
 Scripts/
 etc/
 
+**/cliente_mes.parquet
+
 *.csv
 
 # Arquivos de configuração
