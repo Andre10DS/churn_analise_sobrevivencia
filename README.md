@@ -129,7 +129,7 @@ A Análise de Sobrevivência é um conjunto de métodos estatísticos projetados
   Existe uma concentração dos clientes na cidade 1 com 64,3% da base. Entretanto, além do grande volume de churn na cidade 1 que é esperado devido ter o maior volume de clientes, existe um grande volume de churn nas cidades 4 (6,9%), 5(10,0%),13 (11,9%) e 15 (6,1%).
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/4_churn_city.png" width="400" height="400">
+  <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/4_churn_city.png" width="800">
   </p>
 
   
