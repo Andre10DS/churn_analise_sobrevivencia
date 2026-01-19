@@ -14,40 +14,29 @@ from lifelines                      import KaplanMeierFitter
 from utils.simulator                import simular_reversao
 
 
+
 st.set_page_config(page_title="Dashboard de Retenção - Churn Survival", layout="wide",initial_sidebar_state="expanded")
 
 
 @st.cache_resource
+
 def load_models():
-
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     # Carregue seus modelos .pkl aqui
-    model_path = os.path.join(BASE_DIR, "..", "models", "model_xgb.pkl")
-    with open(model_path, 'rb') as f:
+    with open('../models/model_xgb.pkl', 'rb') as f:
         model_cox = pickle.load(f)
-
-    model_path_aft = os.path.join(BASE_DIR, "..", "models", "model_xgb_aft.pkl")
-    with open(model_path_aft, 'rb') as f:
+    with open('../models/model_xgb_aft.pkl', 'rb') as f:
         model_aft = pickle.load(f)
     return model_cox, model_aft
 
 def load_processing():
-
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    scaler_p = os.path.join(BASE_DIR, "..", "models", "scaler_pay.pkl")
-    with open(scaler_p, 'rb') as f:
-        scaler_pay = pickle.load(f)
     
-    scaler_a = os.path.join(BASE_DIR, "..", "models", "scaler_ac.pkl")
-    with open(scaler_a, 'rb') as f:
+    with open('../models/scaler_pay.pkl', 'rb') as f:
+        scaler_pay = pickle.load(f)
+    with open('../models/scaler_ac.pkl', 'rb') as f:
         scaler_ac = pickle.load(f)
-
-    mm_r = os.path.join(BASE_DIR, "..", "models", "mm_reg.pkl")
-    with open(mm_r, 'rb') as f:
+    with open('../models/mm_reg.pkl', 'rb') as f:
         mm_reg = pickle.load(f)
-
-    encoder_f = os.path.join(BASE_DIR, "..", "models", "encoder_freq.pkl")
-    with open(encoder_f, 'rb') as f:
+    with open('../models/encoder_freq.pkl', 'rb') as f:
         encoder_freq = pickle.load(f)
 
     return scaler_pay, scaler_ac, mm_reg, encoder_freq
@@ -58,15 +47,10 @@ def get_base64_of_bin_file(bin_file):
     return base64.b64encode(data).decode()
 
 def processing_data():
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-    df_train = pd.read_parquet(os.path.join(BASE_DIR, "..", "data", "train_v2.parquet"))
-    df_members = pd.read_parquet(os.path.join(BASE_DIR, "..", "data", "members_v3.parquet"))
-    df_transactions = pd.read_parquet(os.path.join(BASE_DIR, "..", "data", "transactions.parquet"))
-
-    #df_train = pd.read_parquet("../data/train_v2.parquet")
-    #df_members = pd.read_parquet("../data/members_v3.parquet")
-    #df_transactions = pd.read_parquet("../data/transactions.parquet")
+    df_train = pd.read_parquet("../data/train_v2.parquet")
+    df_members = pd.read_parquet("../data/members_v3.parquet")
+    df_transactions = pd.read_parquet("../data/transactions.parquet")
 
     scaler_pay, scaler_ac, mm_reg, encoder_freq = load_processing()
 
