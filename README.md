@@ -322,7 +322,7 @@ Link: https://survival-analysis-churn100.streamlit.app/
 </p>
 
 
-# 4. Conclusão
+# 6. Conclusão
 
 Neste projeto, foi desenvolvido um sistema completo de Análise de Sobrevivência para previsão de churn, cujo objetivo central foi estimar não apenas se um cliente irá churnar, mas quando esse evento tende a ocorrer, permitindo uma atuação proativa do negócio.
 
@@ -338,10 +338,18 @@ Esses modelos permitiram capturar relações não lineares, interações complex
 
 
 
-# 5. Próximo passos
+# 7. Próximo passos
 
   - Criar uma conexão com o CRM ou com base de dados da equipe de marketing para sinalizar as ações que estão sendo realizadas para cada cliente evitando a concentração de esforços em um mesmo cliente, mensurar o custo das ações e verificar quais ações estão gerando retorno.
   - Acrescentar um modelo previo de classficição para apontar aqueles que tem maior chance de churn e depois envia-los para os modelos Cox e aft.
 
+# 8. Fontes
 
+### 📖 Livros e Artigos
+* **[Survival Analysis with Python ]** - *Avishek Nag* (Auerbach Publications, Ano).
+
+
+### 🎥 Vídeos e Cursos
+* **[LLMs Explained - Aggregate Intellect - AI.SCIENCE]** - [Survival regression with AFT model in XGBoost | AISC](https://www.youtube.com/watch?v=HuWRnzgGuIo&t=1008s).
+* **[Meerkat Statistics]** - [Accelerated Failure Time (AFT) vs. Cox Proportional Hazards (CoxPH)](https://www.youtube.com/watch?v=JUaZK9TchCU&t=109s).
 
