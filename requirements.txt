@@ -12,4 +12,5 @@ shap
 statsmodels
 streamlit
 xgboost
+category_encoders
 
