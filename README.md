@@ -322,14 +322,6 @@ Link:
 </p>
 
 
-<p align="center">
-
-| |
-| :---: |
-| <img src="https://raw.githubusercontent.com/Andre10DS/churn_analise_sobrevivencia/main/img/streamlit_b.gif" width="800"> |
-
-</p>
-
 # 4. Conclusão
 
 Neste projeto, foi desenvolvido um sistema completo de Análise de Sobrevivência para previsão de churn, cujo objetivo central foi estimar não apenas se um cliente irá churnar, mas quando esse evento tende a ocorrer, permitindo uma atuação proativa do negócio.
