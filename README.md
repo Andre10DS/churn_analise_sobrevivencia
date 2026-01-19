@@ -312,7 +312,7 @@ Falso: As cidades 25, 17, 20 e 8 term queda de 50% da probilidade de sobrevivenc
 Segue o link dashboard com os clientes com potencial de churn no streamlit:
 
 
-Link:
+Link: https://survival-analysis-churn100.streamlit.app/
 
 
 <p align="center">
