@@ -11,16 +11,8 @@ import base64
 from pathlib import Path
 from datetime                       import datetime, timedelta
 from lifelines                      import KaplanMeierFitter
-#from utils.simulator                import simular_reversao
+from utils.simulator                import simular_reversao
 
-
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
-try:
-    from utils.simulator import simular_reversao
-except ModuleNotFoundError:
-    # Caso o servidor esteja rodando de dentro da pasta src ou similar
-    from simulator import simular_reversao
 
 st.set_page_config(page_title="Dashboard de Retenção - Churn Survival", layout="wide",initial_sidebar_state="expanded")
 
