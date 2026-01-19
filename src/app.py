@@ -9,7 +9,7 @@ import base64
 from pathlib import Path
 from datetime                       import datetime, timedelta
 from lifelines                      import KaplanMeierFitter
-from utils.helpfunctionproject      import simular_reversao
+from utils                          import simular_reversao
 
 st.set_page_config(page_title="Dashboard de Retenção - Churn Survival", layout="wide",initial_sidebar_state="expanded")
 
