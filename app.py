@@ -22,21 +22,21 @@ st.set_page_config(page_title="Dashboard de Retenção - Churn Survival", layout
 
 def load_models():
     # Carregue seus modelos .pkl aqui
-    with open('../models/model_xgb.pkl', 'rb') as f:
+    with open('models/model_xgb.pkl', 'rb') as f:
         model_cox = pickle.load(f)
-    with open('../models/model_xgb_aft.pkl', 'rb') as f:
+    with open('models/model_xgb_aft.pkl', 'rb') as f:
         model_aft = pickle.load(f)
     return model_cox, model_aft
 
 def load_processing():
     
-    with open('../models/scaler_pay.pkl', 'rb') as f:
+    with open('models/scaler_pay.pkl', 'rb') as f:
         scaler_pay = pickle.load(f)
-    with open('../models/scaler_ac.pkl', 'rb') as f:
+    with open('models/scaler_ac.pkl', 'rb') as f:
         scaler_ac = pickle.load(f)
-    with open('../models/mm_reg.pkl', 'rb') as f:
+    with open('models/mm_reg.pkl', 'rb') as f:
         mm_reg = pickle.load(f)
-    with open('../models/encoder_freq.pkl', 'rb') as f:
+    with open('models/encoder_freq.pkl', 'rb') as f:
         encoder_freq = pickle.load(f)
 
     return scaler_pay, scaler_ac, mm_reg, encoder_freq
@@ -48,9 +48,9 @@ def get_base64_of_bin_file(bin_file):
 
 def processing_data():
 
-    df_train = pd.read_parquet("../data/train_v2.parquet")
-    df_members = pd.read_parquet("../data/members_v3.parquet")
-    df_transactions = pd.read_parquet("../data/transactions.parquet")
+    df_train = pd.read_parquet("data/train_v2.parquet")
+    df_members = pd.read_parquet("data/members_v3.parquet")
+    df_transactions = pd.read_parquet("data/transactions.parquet")
 
     scaler_pay, scaler_ac, mm_reg, encoder_freq = load_processing()
 
@@ -214,7 +214,7 @@ def interpretation(df):
 def main():
 
 
-    img_path = Path(r"../img/logo.png")
+    img_path = Path(r"img/logo.png")
     
     if img_path.exists():
         img_base64 = get_base64_of_bin_file(img_path)
